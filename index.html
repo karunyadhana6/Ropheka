@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Fun English Learning - For Kids!</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Background shapes -->
+    <div class="bg-shapes">
+        <div class="floating-shape shape-1">📚</div>
+        <div class="floating-shape shape-2">✏️</div>
+        <div class="floating-shape shape-3">🎨</div>
+        <div class="floating-shape shape-4">🌈</div>
+        <div class="floating-shape shape-5">⭐</div>
+    </div>
+    <div class="bg-shapes" id="dynamicBg"></div>
+
+    <!-- Age Category Sidebar -->
+    <div class="sidebar" id="ageSidebar">
+        <div class="sidebar-header">
+            <h3>👤 Age Settings</h3>
+            <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+        </div>
+        
+        <div class="sidebar-content">
+            <p class="sidebar-label">Select Your Age Group:</p>
+            
+            <div class="age-options">
+                <button class="age-option" data-age="3-4" onclick="selectAge('3-4')">
+                    <span class="age-emoji">👶</span>
+                    <span class="age-label">3-4 Years</span>
+                    <span class="age-desc">Letters, Colors & Shapes</span>
+                </button>
+                
+                <button class="age-option" data-age="5-6" onclick="selectAge('5-6')">
+                    <span class="age-emoji">🧒</span>
+                    <span class="age-label">5-6 Years</span>
+                    <span class="age-desc">Words, Counting & Simple Sentences</span>
+                </button>
+                
+                <button class="age-option" data-age="7-8" onclick="selectAge('7-8')">
+                    <span class="age-emoji">👦</span>
+                    <span class="age-label">7-8 Years</span>
+                    <span class="age-desc">Spelling, Maths & Reading</span>
+                </button>
+                
+                <button class="age-option" data-age="9-10" onclick="selectAge('9-10')">
+                    <span class="age-emoji">🧑</span>
+                    <span class="age-label">9-10 Years</span>
+                    <span class="age-desc">Advanced Words & Complex Sentences</span>
+                </button>
+                
+                <button class="age-option" data-age="11+" onclick="selectAge('11+')">
+                    <span class="age-emoji">🎓</span>
+                    <span class="age-label">11+ Years</span>
+                    <span class="age-desc">Challenge Mode & All Features</span>
+                </button>
+            </div>
+            
+            <div class="sidebar-divider"></div>
+            
+            <div class="current-settings">
+                <h4>📋 Current Settings</h4>
+                <div class="setting-item">
+                    <span>Age Group:</span>
+                    <span id="currentAgeDisplay">Not Set</span>
+                </div>
+                <div class="setting-item">
+                    <span>Difficulty:</span>
+                    <span id="currentDifficultyDisplay">Auto</span>
+                </div>
+                <div class="setting-item">
+                    <span>Voice Speed:</span>
+                    <span id="currentVoiceSpeedDisplay">Normal</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-divider"></div>
+            
+            <div class="sidebar-actions">
+                <button class="sidebar-btn reset-btn" onclick="resetProgress()">
+                    🔄 Reset Progress
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    
+    <!-- Sidebar toggle button -->
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+        <span class="toggle-icon">⚙️</span>
+        <span class="toggle-text">Age</span>
+    </button>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="app-title">🎓 Fun English Learning! 📖</h1>
+            <p class="subtitle">Learn Letters, Words & Numbers! 🌟</p>
+            
+            <div class="score-bar">
+                <div class="score-item">
+                    <span class="score-icon">⭐</span>
+                    <span class="score-text" id="totalStars">0 Stars</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-icon">🏆</span>
+                    <span class="score-text" id="level">Level 1</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-icon">🔥</span>
+                    <span class="score-text" id="streak">0 Streak</span>
+                </div>
+            </div>
+            
+            <button class="age-badge" id="ageBadge" onclick="toggleSidebar()">
+                <span id="ageBadgeEmoji">🧒</span>
+                <span id="ageBadgeText">Select Age</span>
+            </button>
+        </header>
+
+        <!-- Game Cards Grid -->
+        <div class="game-cards">
+            <a href="alphabet.html" class="game-card">
+                <span class="game-card-emoji">🔤</span>
+                <h3 class="game-card-title">Alphabet</h3>
+                <p class="game-card-desc">Learn all the letters A-Z!</p>
+            </a>
+            
+            <a href="matching.html" class="game-card">
+                <span class="game-card-emoji">🎯</span>
+                <h3 class="game-card-title">Match Words</h3>
+                <p class="game-card-desc">Match pictures with words!</p>
+            </a>
+            
+            <a href="spelling.html" class="game-card">
+                <span class="game-card-emoji">✍️</span>
+                <h3 class="game-card-title">Spelling</h3>
+                <p class="game-card-desc">Spell words correctly!</p>
+            </a>
+            
+            <a href="counting.html" class="game-card">
+                <span class="game-card-emoji">🔢</span>
+                <h3 class="game-card-title">Counting</h3>
+                <p class="game-card-desc">Count objects and learn numbers!</p>
+            </a>
+            
+            <a href="maths.html" class="game-card">
+                <span class="game-card-emoji">➕</span>
+                <h3 class="game-card-title">Maths</h3>
+                <p class="game-card-desc">Add, subtract & more!</p>
+            </a>
+            
+            <a href="sentences.html" class="game-card">
+                <span class="game-card-emoji">💬</span>
+                <h3 class="game-card-title">Sentences</h3>
+                <p class="game-card-desc">Build and read sentences!</p>
+            </a>
+            
+            <a href="tracing.html" class="game-card">
+                <span class="game-card-emoji">✏️</span>
+                <h3 class="game-card-title">Tracing</h3>
+                <p class="game-card-desc">Trace letters with your finger!</p>
+            </a>
+            
+            <a href="story.html" class="game-card">
+                <span class="game-card-emoji">📖</span>
+                <h3 class="game-card-title">Story Time</h3>
+                <p class="game-card-desc">Read fun stories!</p>
+            </a>
+        </div>
+
+        <!-- Progress Dashboard -->
+        <div class="progress-section">
+            <h3 class="progress-title">📊 Your Learning Progress</h3>
+            
+            <div class="skill-progress">
+                <div class="skill-item">
+                    <div class="skill-name">🔤 Alphabet</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill alphabet" id="alphabetProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">🎯 Matching</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill matching" id="matchingProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">✍️ Spelling</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill spelling" id="spellingProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">🔢 Counting</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill counting" id="countingProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">➕ Maths</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill maths" id="mathsProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">💬 Sentences</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill sentences" id="sentencesProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celebration container -->
+    <div class="celebration" id="celebration"></div>
+
+    <!-- Sound toggle -->
+    <button class="sound-toggle" id="soundToggle" onclick="toggleSound()">🔊</button>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Sidebar functionality
+        function toggleSidebar() {
+            const sidebar = document.getElementById('ageSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+            
+            playSound('pop');
+        }
+        
+        function selectAge(age) {
+            currentAge = age;
+            localStorage.setItem('learningAge', age);
+            
+            // Update UI
+            updateAgeDisplay();
+            updateAgeBadge();
+            highlightSelectedAge();
+            
+            // Show feedback
+            const config = ageConfigs[age];
+            speak(`${config.encouragement[0]} You selected ${config.label}!`);
+            celebrate();
+            
+            playSound('success');
+        }
+        
+        function updateAgeDisplay() {
+            if (!currentAge) return;
+            
+            const config = ageConfigs[currentAge];
+            document.getElementById('currentAgeDisplay').textContent = config.label;
+            
+            // Update difficulty display
+            let difficulty = 'Easy';
+            if (currentAge === '7-8') difficulty = 'Medium';
+            else if (currentAge === '9-10') difficulty = 'Medium-Hard';
+            else if (currentAge === '11+') difficulty = 'Advanced';
+            document.getElementById('currentDifficultyDisplay').textContent = difficulty;
+            
+            // Update voice speed display
+            let speed = 'Normal';
+            if (config.voiceSpeed < 0.8) speed = 'Slower';
+            else if (config.voiceSpeed > 0.9) speed = 'Faster';
+            document.getElementById('currentVoiceSpeedDisplay').textContent = speed;
+        }
+        
+        function highlightSelectedAge() {
+            document.querySelectorAll('.age-option').forEach(btn => {
+                btn.classList.toggle('selected', btn.dataset.age === currentAge);
+            });
+        }
+        
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset all your progress? This cannot be undone!')) {
+                localStorage.removeItem('englishApp_stars');
+                localStorage.removeItem('englishApp_level');
+                localStorage.removeItem('skillProgress');
+                localStorage.removeItem('achievements');
+                localStorage.removeItem('learningAge');
+                
+                // Reset state
+                totalStars = 0;
+                level = 1;
+                streak = 0;
+                currentAge = null;
+                skillProgress = {
+                    alphabet: 0,
+                    matching: 0,
+                    spelling: 0,
+                    counting: 0,
+                    maths: 0,
+                    sentences: 0
+                };
+                
+                // Update displays
+                updateScoreDisplay();
+                updateAgeBadge();
+                highlightSelectedAge();
+                
+                // Update progress bars
+                for (const skill in skillProgress) {
+                    const bar = document.getElementById(`${skill}Progress`);
+                    if (bar) bar.style.width = '0%';
+                }
+                
+                document.getElementById('currentAgeDisplay').textContent = 'Not Set';
+                document.getElementById('currentDifficultyDisplay').textContent = 'Auto';
+                document.getElementById('currentVoiceSpeedDisplay').textContent = 'Normal';
+                
+                speak('Progress reset! Let\'s start fresh!');
+                playSound('click');
+            }
+        }
+        
+        // Initialize sidebar state
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAgeDisplay();
+            highlightSelectedAge();
+            
+            // Show sidebar on first visit if no age selected
+            if (!currentAge) {
+                setTimeout(() => {
+                    toggleSidebar();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
